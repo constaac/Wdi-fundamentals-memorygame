@@ -11,19 +11,18 @@
 		</header>
 		<nav>
 			<a href="#instructionscroll">Instructions</a>
-			<a href="#gamescroll">Game</a>
+			<a href="#game-board">Game</a>
 		</nav>
 		<main>
 		<span id="linkedin"><p>Check out my <a href="https://www.linkedin.com/in/alexander-constantine-b22a54b4/" id="linkedinlink">Linkedin</a>!</p></span>
-		<h2>This game will challenge your memory skills, while displaying what I've learned so far!</h2>
+		<h2>This game will test your luck, while displaying what I've learned so far!</h2>
 		<h3>Instructions</h3>
 		<p id="instructionscroll">Concentration, also known as Match Match, Memory, Pelmanism, Shinkei-suijaku, Pexeso or simply Pairs, is a card game in which all of the cards are laid face down on a surface and two cards are flipped face up over each turn. The object of the game is to turn over pairs of matching cards.</p>
-		<div id="gamescroll">
-			<img src="images/back.png" alt="Queen of Diamonds">
-			<img src="images/back.png" alt="Queen of Hearts">
-			<img src="images/back.png" alt="King of Diamonds">
-			<img src="images/back.png" alt="King of Hearts">
-		</div>
+		<h3>Scoreboard: (Wins/Losses)</h3></div>
+		<a id="score1">0</a><a id="score2">0</a><br><br>
+		<button type="button" id="resetCards" onclick="resetCardsButton()">Reset Cards</button>
+		<button type="button" id="resetScore" onclick="resetScoreButton()">Reset Score</button>
+		<div id="game-board" class="board clearfix">
 		</main>
 		<footer class="clearfix">
 			<p class="copyright">Copyright 2017</p>
