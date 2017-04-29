@@ -1,26 +1,21 @@
 //Array containing all possible cards
-var cards = [
-    {
-        rank: 'queen',
-        suit: 'hearts',
-        cardImage: 'images/queen-of-hearts.png'
-    },
-    {
-        rank: 'queen',
-        suit: 'diamonds',
-        cardImage: 'images/queen-of-diamonds.png'
-    },
-    {
-        rank: 'king',
-        suit: 'hearts',
-        cardImage: 'images/king-of-hearts.png'
-    },
-    {
-        rank: 'king',
-        suit: 'diamonds',
-        cardImage: 'images/king-of-diamonds.png'
-    }
-];
+var cards = [{
+    rank: 'queen',
+    suit: 'hearts',
+    cardImage: 'images/queen-of-hearts.png'
+}, {
+    rank: 'queen',
+    suit: 'diamonds',
+    cardImage: 'images/queen-of-diamonds.png'
+}, {
+    rank: 'king',
+    suit: 'hearts',
+    cardImage: 'images/king-of-hearts.png'
+}, {
+    rank: 'king',
+    suit: 'diamonds',
+    cardImage: 'images/king-of-diamonds.png'
+}];
 
 //Array to hold flipped cards
 var cardsInPlay = [];
@@ -52,6 +47,42 @@ var checkForMatch = function() {
     }
 }
 
+
+
+
+// this function sets the value  of the bet to be made
+let bettingChoice = function(x) {
+    betPossible()
+    resetCardsButton()
+    var betChoice = 'nothing'
+    
+    if (x === 'k') {
+        var betChoice = 'king';
+        
+
+    }
+    if (x === 'q') {
+        var betChoice = 'queen';
+
+
+    }
+    console.log(' loop is finished:' + betChoice)
+
+}
+
+// set up an initial function to see if first if they have points to bet
+// if they have points to bet then we can run the bigger function that will check if the first card
+// flipped is the same as the bet
+
+var betPossible = function(){
+    if (sc1 > 0){
+        console.log(sc1)
+    }
+    else {
+        console.log( 'you need to play a round first to bet points')
+    }
+}
+
 //Shows Card face and Pushes to Cards in Play Array (Contains unnecessary console logs)
 var flipCard = function() {
     var cardId = this.getAttribute('data-id');
@@ -59,7 +90,7 @@ var flipCard = function() {
     cardsInPlay.push(cards[cardId].rank);
     console.log(cards[cardId].suit);
     console.log(cards[cardId].cardImage);
-    this.setAttribute('src',cards[cardId].cardImage);
+    this.setAttribute('src', cards[cardId].cardImage);
     checkForMatch();
 }
 
