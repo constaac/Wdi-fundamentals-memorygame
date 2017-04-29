@@ -80,6 +80,9 @@ footer {
 }
 button {
 	padding: 10px 30px;
+	width: 120px;
+	height: 50px;
+	margin: 0 auto;
 }
 #linkedin {
 	font-family: "Raleway", sans-serif;
@@ -115,4 +118,8 @@ button {
 	color: black;
 	font-size: 60px;
 	margin: 0 40px;
+}
+#outcome {
+	color: black;
+	font-size: 20px;
 }
