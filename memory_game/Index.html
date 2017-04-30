@@ -16,16 +16,16 @@
 		<main>
 		<span id="linkedin"><p>Check out my <a href="https://www.linkedin.com/in/alexander-constantine-b22a54b4/" id="linkedinlink">Linkedin</a>!</p></span>
 		<h2>This game will test your luck, while displaying what I've learned so far!</h2>
-		<h3>Instructions</h3>
-		<p id="instructionscroll">Concentration, also known as Match Match, Memory, Pelmanism, Shinkei-suijaku, Pexeso or simply Pairs, is a card game in which all of the cards are laid face down on a surface and two cards are flipped face up over each turn. The object of the game is to turn over pairs of matching cards.</p>
+		<h3 id="instructionscroll">Instructions</h3>
+		<p>Concentration, also known as Match Match, Memory, Pelmanism, Shinkei-suijaku, Pexeso or simply Pairs, is a card game in which all of the cards are laid face down on a surface and two cards are flipped face up over each turn. The object of the game is to turn over pairs of matching cards.</p>
 		<h3 id="gameAnchor">Scoreboard: (Wins/Losses)</h3></div>
-		<a id="score1">0</a><a id="score2">0</a><br><br>
+		<a id="score1" class="scoreLink">0</a><a class="scoreLink" id="score2">0</a><br><br>
 		<button type="button" id="resetCards" onclick="resetCardsButton()">Reset Cards</button>
 		<button type="button" id="resetScore" onclick="resetScoreButton()">Reset Score</button><br>
-		<p>You have the option to bet One (1) "Win Point" for the chance of winning 3 additional "Win Points". Choose either Kings or Queens, and if you guess your match you will receive bonus points. If you're wrong, you're purchase will go to waste. Choose carefully!</p>
+		<p id="betDescription">You have the option to bet One (1) "Win Point" for the chance of winning Three (3) <em>additional</em> "Win Points". Choose either Kings or Queens, and if you guess your match, you will receive bonus points. If you're wrong, your wager will go to waste. <u>Choose carefully!</u><br><small><i>Note: You will still receive a point for finding a match of the suit you did not predict</i></small></p>
 		<button type="button" id="betKings" onclick="bettingChoice('k')">Kings</button>
 		<button type="button" id="betQueens" onclick="bettingChoice('q')">Queens</button>
-		<br><br><br>
+		<br><br>
 		<a id ="outcome">Choose two cards...</a>
 		<div id="game-board" class="board clearfix">
 		</main>

@@ -1,31 +1,34 @@
-//Array containing all possible cards
+//Array containing all possible cards - added "number" to help with same-pick check function
 var cards = [{
     rank: 'queen',
     suit: 'hearts',
-    cardImage: 'images/queen-of-hearts.png'
+    cardImage: 'images/queen-of-hearts.png',
+    number: '1'
 }, {
     rank: 'queen',
     suit: 'diamonds',
-    cardImage: 'images/queen-of-diamonds.png'
+    cardImage: 'images/queen-of-diamonds.png',
+    number: '2'
 }, {
     rank: 'king',
     suit: 'hearts',
-    cardImage: 'images/king-of-hearts.png'
+    cardImage: 'images/king-of-hearts.png',
+    number: '3'
 }, {
     rank: 'king',
     suit: 'diamonds',
-    cardImage: 'images/king-of-diamonds.png'
+    cardImage: 'images/king-of-diamonds.png',
+    number: '4'
 }];
 
 //Array containing flipped cards
 var cardsInPlay = [];
 
 //Define Score Variables Globally
-var sc1 = 30; //TEMPORARY
-document.getElementById('score1').innerHTML = sc1;  //TEMPORARY
+var sc1 = 0;
 var sc2 = 0;
 
-//Wins Function **
+//Update Wins Score
 var wins = function() {
     document.getElementById('score1').innerHTML = sc1;
 }
@@ -34,11 +37,11 @@ var wins = function() {
 var checkForMatch = function() {
     if (cardsInPlay.length === 2) {
         if (cardsInPlay[0] === cardsInPlay[1]) {
+            console.log(betChoice + " card 0 is " + cardsInPlay[0] + " and card 1 is " + cardsInPlay[1]);
             if (betChoice === 'king' && (cardsInPlay[0] === 'king' && cardsInPlay[1] === 'king')) {
                 sc1 += 4;
                 wins();
                 winOutcome();
-                console.log('THIS IS RUNNING')
             } else if (betChoice === 'queen' && (cardsInPlay[0] === 'queen' && cardsInPlay[1] === 'queen')) {
                 sc1 += 4;
                 wins();
@@ -62,7 +65,7 @@ var checkForMatch = function() {
 }
 
 //Initialize bet choice variable globally
-var betChoice;
+var betChoice = "blank";
 
 // this function sets the value  of the bet to be made
 var bettingChoice = function(x) {
@@ -71,27 +74,38 @@ var bettingChoice = function(x) {
         sc1 -= 1;
         document.getElementById('score1').innerHTML = sc1;
         if (x === 'k') {
-            var betChoice = 'king';
+            betChoice = 'king';
             console.log(betChoice);
         }
         if (x === 'q') {
-            var betChoice = 'queen';
+            betChoice = 'queen';
             console.log(betChoice);
         }
     } else {
         alert('You must have "Win Points" before you place a bet!');
-    }
+    };
 };
+
+//Generate Array of Card Images Already Flipped
+cardsInPlayID = [];
 
 //Shows Card face and Pushes to Cards in Play Array (Contains unnecessary console logs)
 var flipCard = function() {
-    var cardId = this.getAttribute('data-id');
-    console.log("User flipped " + cards[cardId].rank);
-    cardsInPlay.push(cards[cardId].rank);
-    console.log(cards[cardId].suit);
-    console.log(cards[cardId].cardImage);
-    this.setAttribute('src', cards[cardId].cardImage);
-    checkForMatch();
+        var cardId = this.getAttribute('data-id');
+        //Checking for same-card picks
+        if (cardsInPlayID.length >= 1) {
+            if (cardsInPlayID[0] === cards[cardId].number) {
+            alert("You can't pick the same card multiple times!");
+            return;
+            }
+        }
+        console.log("User flipped " + cards[cardId].rank);
+        cardsInPlay.push(cards[cardId].rank);
+        cardsInPlayID.push(cards[cardId].number);
+        console.log(cards[cardId].suit);
+        console.log(cards[cardId].cardImage);
+        this.setAttribute('src', cards[cardId].cardImage);
+        checkForMatch();
 }
 
 //Adds Card Back images to the Div with a For Loop (4 Times) - Contains an Unnecesary Console Log
@@ -106,6 +120,7 @@ var createBoard = function() {
     }
 }
 
+//ToDo --> Condense the following into one function
 //Display Winning Outcome (Green Text)
 var winOutcome = function() {
     document.getElementById('outcome').innerHTML = "You've found a match!";
@@ -139,9 +154,11 @@ var resetCardsButton = function() {
         myNode.removeChild(myNode.firstChild);
     }
     cardsInPlay = [];
+    cardsInPlayID = [];
     shuffle(cards);
     createBoard();
     resetOutcome();
+    betChoice = "blank";
 }
 
 //Function to shuffle order of Cards Array
