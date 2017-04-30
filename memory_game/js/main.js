@@ -17,7 +17,7 @@ var cards = [{
     cardImage: 'images/king-of-diamonds.png'
 }];
 
-//Array to hold flipped cards
+//Array containing flipped cards
 var cardsInPlay = [];
 
 //Define Score Variables Globally
@@ -28,13 +28,29 @@ var sc2 = 0;
 var checkForMatch = function() {
     if (cardsInPlay.length === 2) {
         if (cardsInPlay[0] === cardsInPlay[1]) {
-            //alert("You found a match!") A Requirement, but annoying
-            sc1 += 1;
-            var wins = function() {
-                document.getElementById('score1').innerHTML = sc1;
+            if (betChoice === 'king' && cardsInPlay[0].rank === 'king' && cardsInPlay[1].rank === 'king') {
+                sc1 += 4;
+                var wins = function() {
+                    document.getElementById('score1').innerHTML = sc1;
+                }
+                wins();
+                winOutcome();
+            } else if (betChoice === 'queen' && cardsInPlay[0].rank === 'queen' && cardsInPlay[1].rank === 'queen') {
+                sc1 += 4;
+                var wins = function() {
+                    document.getElementById('score1').innerHTML = sc1;
+                }
+                wins();
+                winOutcome();
+            } else {
+                //alert("You found a match!") A Requirement, but annoying
+                sc1 += 1;
+                var wins = function() {
+                    document.getElementById('score1').innerHTML = sc1;
+                }
+                wins();
+                winOutcome();
             }
-            wins();
-            winOutcome();
         } else {
             //alert("Sorry, try again.") A Requirement, but annoying
             sc2 += 1;
@@ -47,41 +63,27 @@ var checkForMatch = function() {
     }
 }
 
-
-
+//Initialize bet choice variable globally
+var betChoice;
 
 // this function sets the value  of the bet to be made
-let bettingChoice = function(x) {
-    betPossible()
-    resetCardsButton()
-    var betChoice = 'nothing'
-    
-    if (x === 'k') {
-        var betChoice = 'king';
-        
-
+var bettingChoice = function(x) {
+    if (sc1 > 0) {
+        resetCardsButton();
+        sc1 -= 1;
+        document.getElementById('score1').innerHTML = sc1;
+        if (x === 'k') {
+            var betChoice = 'king';
+            console.log(betChoice);
+        }
+        if (x === 'q') {
+            var betChoice = 'queen';
+            console.log(betChoice);
+        }
+    } else {
+        alert('You must have "Win Points" before you place a bet!');
     }
-    if (x === 'q') {
-        var betChoice = 'queen';
-
-
-    }
-    console.log(' loop is finished:' + betChoice)
-
-}
-
-// set up an initial function to see if first if they have points to bet
-// if they have points to bet then we can run the bigger function that will check if the first card
-// flipped is the same as the bet
-
-var betPossible = function(){
-    if (sc1 > 0){
-        console.log(sc1)
-    }
-    else {
-        console.log( 'you need to play a round first to bet points')
-    }
-}
+};
 
 //Shows Card face and Pushes to Cards in Play Array (Contains unnecessary console logs)
 var flipCard = function() {
