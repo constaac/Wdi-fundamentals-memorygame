@@ -70,21 +70,26 @@ var betChoice = "blank";
 // this function sets the value  of the bet to be made
 var bettingChoice = function(x) {
     if (sc1 > 0) {
-        resetCardsButton();
-        sc1 -= 1;
-        document.getElementById('score1').innerHTML = sc1;
-        if (x === 'k') {
-            betChoice = 'king';
-            console.log(betChoice);
-        }
-        if (x === 'q') {
-            betChoice = 'queen';
-            console.log(betChoice);
-        }
+        if (betChoice === 'king' || betChoice === 'queen') {
+            alert("You have already placed a bet!");
+        } else {
+            resetCardsButton();
+            sc1 -= 1;
+            document.getElementById('score1').innerHTML = sc1;
+            if (x === 'k') {
+                betChoice = 'king';
+                console.log(betChoice);
+            }
+            if (x === 'q') {
+                betChoice = 'queen';
+                console.log(betChoice);
+            }
+        } 
     } else {
         alert('You must have "Win Points" before you place a bet!');
-    };
+    }; 
 };
+        
 
 //Generate Array of Card Images Already Flipped
 cardsInPlayID = [];
@@ -125,18 +130,21 @@ var createBoard = function() {
 var winOutcome = function() {
     document.getElementById('outcome').innerHTML = "You've found a match!";
     document.getElementById('outcome').style.color = "green";
+    betChoice = "blank";
 }
 
 //Display Losing Outcome (Red Text)
 var loseOutcome = function() {
     document.getElementById('outcome').innerHTML = "Sorry, try again!";
     document.getElementById('outcome').style.color = "red";
+    betChoice = "blank";
 }
 
 //Resets Outcome - Prompt to choose again (Reset Text Color)
 var resetOutcome = function() {
     document.getElementById('outcome').innerHTML = "Choose two cards...";
     document.getElementById('outcome').style.color = "black";
+    betChoice = "blank";
 }
 
 //Sets User's Score to (0 - 0)
