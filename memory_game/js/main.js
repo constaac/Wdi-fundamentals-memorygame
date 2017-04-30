@@ -21,33 +21,31 @@ var cards = [{
 var cardsInPlay = [];
 
 //Define Score Variables Globally
-var sc1 = 0;
+var sc1 = 30; //TEMPORARY
+document.getElementById('score1').innerHTML = sc1;  //TEMPORARY
 var sc2 = 0;
+
+//Wins Function **
+var wins = function() {
+    document.getElementById('score1').innerHTML = sc1;
+}
 
 //Checks if two cards have been chosen - reacts based on yes/no match
 var checkForMatch = function() {
     if (cardsInPlay.length === 2) {
         if (cardsInPlay[0] === cardsInPlay[1]) {
-            if (betChoice === 'king' && cardsInPlay[0].rank === 'king' && cardsInPlay[1].rank === 'king') {
+            if (betChoice === 'king' && (cardsInPlay[0] === 'king' && cardsInPlay[1] === 'king')) {
                 sc1 += 4;
-                var wins = function() {
-                    document.getElementById('score1').innerHTML = sc1;
-                }
                 wins();
                 winOutcome();
-            } else if (betChoice === 'queen' && cardsInPlay[0].rank === 'queen' && cardsInPlay[1].rank === 'queen') {
+                console.log('THIS IS RUNNING')
+            } else if (betChoice === 'queen' && (cardsInPlay[0] === 'queen' && cardsInPlay[1] === 'queen')) {
                 sc1 += 4;
-                var wins = function() {
-                    document.getElementById('score1').innerHTML = sc1;
-                }
                 wins();
                 winOutcome();
             } else {
                 //alert("You found a match!") A Requirement, but annoying
                 sc1 += 1;
-                var wins = function() {
-                    document.getElementById('score1').innerHTML = sc1;
-                }
                 wins();
                 winOutcome();
             }
