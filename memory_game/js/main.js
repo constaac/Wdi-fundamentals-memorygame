@@ -41,16 +41,16 @@ var checkForMatch = function() {
             if (betChoice === 'king' && (cardsInPlay[0] === 'king' && cardsInPlay[1] === 'king')) {
                 sc1 += 4;
                 wins();
-                winOutcome();
+                gameOutcome('win');
             } else if (betChoice === 'queen' && (cardsInPlay[0] === 'queen' && cardsInPlay[1] === 'queen')) {
                 sc1 += 4;
                 wins();
-                winOutcome();
+                gameOutcome('win');
             } else {
                 //alert("You found a match!") A Requirement, but annoying
                 sc1 += 1;
                 wins();
-                winOutcome();
+                gameOutcome('win');
             }
         } else {
             //alert("Sorry, try again.") A Requirement, but annoying
@@ -59,7 +59,7 @@ var checkForMatch = function() {
                 document.getElementById('score2').innerHTML = sc2;
             }
             losses();
-            loseOutcome();
+            gameOutcome('lose');
         }
     }
 }
@@ -125,25 +125,19 @@ var createBoard = function() {
     }
 }
 
-//ToDo --> Condense the following 3 functions into one function
-//Display Winning Outcome (Green Text)
-var winOutcome = function() {
-    document.getElementById('outcome').innerHTML = "You've found a match!";
-    document.getElementById('outcome').style.color = "green";
-    betChoice = "blank";
-}
 
-//Display Losing Outcome (Red Text)
-var loseOutcome = function() {
-    document.getElementById('outcome').innerHTML = "Sorry, try again!";
-    document.getElementById('outcome').style.color = "red";
-    betChoice = "blank";
-}
-
-//Resets Outcome - Prompt to choose again (Reset Text Color)
-var resetOutcome = function() {
-    document.getElementById('outcome').innerHTML = "Choose two cards...";
-    document.getElementById('outcome').style.color = "black";
+//Display Outcome of Card Flip, and Reset Prompt
+var gameOutcome = function(x) {
+    if (x === 'win') {
+        document.getElementById('outcome').innerHTML = "You've found a match!";
+        document.getElementById('outcome').style.color = "green";
+    } else if (x === 'lose') {
+        document.getElementById('outcome').innerHTML = "Sorry, try again!";
+        document.getElementById('outcome').style.color = "red";
+    } else if (x === 'reset') {
+        document.getElementById('outcome').innerHTML = "Choose two cards...";
+        document.getElementById('outcome').style.color = "black";   
+    };
     betChoice = "blank";
 }
 
@@ -165,7 +159,7 @@ var resetCardsButton = function() {
     cardsInPlayID = [];
     shuffle(cards);
     createBoard();
-    resetOutcome();
+    gameOutcome('reset');
     betChoice = "blank";
 }
 
