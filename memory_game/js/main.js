@@ -47,13 +47,13 @@ var checkForMatch = function() {
                 wins();
                 gameOutcome('win');
             } else {
-                //alert("You found a match!") A Requirement, but annoying
+                //alert("You found a match!") A Requirement, but annoying *TEMP COMMENTED OUT
                 sc1 += 1;
                 wins();
                 gameOutcome('win');
             }
         } else {
-            //alert("Sorry, try again.") A Requirement, but annoying
+            //alert("Sorry, try again.") A Requirement, but annoying *TEMP COMMENTED OUT
             sc2 += 1;
             var losses = function() {
                 document.getElementById('score2').innerHTML = sc2;
@@ -70,9 +70,11 @@ var betChoice = "blank";
 // this function sets the value  of the bet to be made
 var bettingChoice = function(x) {
     if (sc1 > 0) {
+        //Check for a bet already placed
         if (betChoice === 'king' || betChoice === 'queen') {
             alert("You have already placed a bet!");
         } else {
+            //Reset cards to prevent placing bet after choosing a card
             resetCardsButton();
             sc1 -= 1;
             document.getElementById('score1').innerHTML = sc1;
@@ -91,7 +93,7 @@ var bettingChoice = function(x) {
 };
 
 
-//Generate Array of Card Images Already Flipped
+//Initialize Array of Card Images Already Flipped
 cardsInPlayID = [];
 
 //Shows Card face and Pushes to Cards in Play Array (Contains unnecessary console logs)
