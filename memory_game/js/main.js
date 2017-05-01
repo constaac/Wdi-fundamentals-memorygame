@@ -84,33 +84,33 @@ var bettingChoice = function(x) {
                 betChoice = 'queen';
                 console.log(betChoice);
             }
-        } 
+        }
     } else {
         alert('You must have "Win Points" before you place a bet!');
-    }; 
+    };
 };
-        
+
 
 //Generate Array of Card Images Already Flipped
 cardsInPlayID = [];
 
 //Shows Card face and Pushes to Cards in Play Array (Contains unnecessary console logs)
 var flipCard = function() {
-        var cardId = this.getAttribute('data-id');
-        //Checking for same-card picks
-        if (cardsInPlayID.length >= 1) {
-            if (cardsInPlayID[0] === cards[cardId].number) {
+    var cardId = this.getAttribute('data-id');
+    //Checking for same-card picks
+    if (cardsInPlayID.length >= 1) {
+        if (cardsInPlayID[0] === cards[cardId].number) {
             alert("You can't pick the same card multiple times!");
             return;
-            }
         }
-        console.log("User flipped " + cards[cardId].rank);
-        cardsInPlay.push(cards[cardId].rank);
-        cardsInPlayID.push(cards[cardId].number);
-        console.log(cards[cardId].suit);
-        console.log(cards[cardId].cardImage);
-        this.setAttribute('src', cards[cardId].cardImage);
-        checkForMatch();
+    }
+    console.log("User flipped " + cards[cardId].rank);
+    cardsInPlay.push(cards[cardId].rank);
+    cardsInPlayID.push(cards[cardId].number);
+    console.log(cards[cardId].suit);
+    console.log(cards[cardId].cardImage);
+    this.setAttribute('src', cards[cardId].cardImage);
+    checkForMatch();
 }
 
 //Adds Card Back images to the Div with a For Loop (4 Times) - Contains an Unnecesary Console Log
@@ -125,7 +125,7 @@ var createBoard = function() {
     }
 }
 
-//ToDo --> Condense the following into one function
+//ToDo --> Condense the following 3 functions into one function
 //Display Winning Outcome (Green Text)
 var winOutcome = function() {
     document.getElementById('outcome').innerHTML = "You've found a match!";
